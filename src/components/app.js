@@ -20,10 +20,7 @@ const flexiConfig = {
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      name1: '',
-      state1: ''
-    };
+    this.state = {};
     // This binding is necessary to make `this` work in the callback
     this.onFlexiSubmit = this.onFlexiSubmit.bind(this);
   }
