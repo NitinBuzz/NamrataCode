@@ -1,44 +1,40 @@
 import React, { Component } from 'react';
+import Flexi from './flexi';
 
-export default class Flexi extends Component {
+const flexiConfig = {
+  items: [
+    {
+      name: 'personname',
+      label: "Person's Name",
+      type: 'TextField'
+    },
+    {
+      name: 'states',
+      label: "Person's state",
+      type: 'DropDown',
+      values: ['Maharashtra', 'Kerala', 'Tamil Nadu']
+    }
+  ]
+};
+
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      term1: '',
-      id1: '',
-      title1: '',
-      term2: '',
-      id2: '',
-      title2: ''
+      name1: '',
+      state1: ''
     };
+    // This binding is necessary to make `this` work in the callback
+    this.onFlexiSubmit = this.onFlexiSubmit.bind(this);
+  }
+  onFlexiSubmit(e, values) {
+    e.preventDefault();
+    console.log(`----------Flexi Submitted. ${JSON.stringify(values)}`);
   }
 
   render() {
-    return (
-      <div>
-        <form>
-          {this.props.config.items.map((key, value) => {
-            return (
-              <div>
-                <label>{key.label} : </label>
-                {key.type == 'DropDown' ? (
-                  <select>
-                    {key.values.map(v => (
-                      <option key={v} value={v}>
-                        {' '}
-                        {v}
-                      </option>
-                    ))}
-                  </select>
-                ) : (
-                  <input type={key.type} />
-                )}
-                <p />
-              </div>
-            );
-          })}
-        </form>
-      </div>
-    );
+    return <Flexi onSubmit={this.onFlexiSubmit} config={flexiConfig} />;
   }
 }
+
+export default App;
