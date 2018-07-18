@@ -30,6 +30,7 @@ class App extends Component {
   onFlexiSubmit(e, values) {
     e.preventDefault();
     console.log(`----------Flexi Submitted. ${JSON.stringify(values)}`);
+    alert(`Flexi Submitted: ${JSON.stringify(values)}`);
   }
 
   render() {
